@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F1F4F2;
+  --foreground: #1F2933;
+  --card: #FFFFFF;
+  --secondary: #59665F;
+  --primary: #0F766E;
+  --primary-hover: #115E59;
+  --border: #DCE5DF;
+  --soft-emerald: #D1FAE5;
+  --muted: #E8EEEA;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), var(--font-inter), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1,
+h2 {
+  line-height: 1.05;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* Keep legacy component utility classes aligned with the light theme. */
+main .text-white,
+main .text-slate-100,
+main .text-slate-200 {
+  color: #1F2933 !important;
+}
+
+main .text-white[class*="bg-[#0F766E]"],
+main .text-white[class*="bg-gradient"] {
+  color: #FFFFFF !important;
+}
+
+main [class*="border-white"] {
+  border-color: #DCE5DF !important;
+}
+
+main .text-slate-300,
+main .text-slate-400 {
+  color: #59665F !important;
+}
+
+main .text-violet-200,
+main .text-violet-300,
+main .text-violet-400,
+main .text-violet-500,
+main .text-emerald-300,
+main .text-emerald-400,
+main .text-flutter-sky,
+  main [class*="text-[#F8E769]"] {
+  color: #0F766E !important;
+}
+
+  main [class*="bg-[#064E3B]"],
+main .bg-violet-600\/15,
+main .bg-violet-600\/20,
+main .bg-emerald-500\/10,
+main .bg-emerald-500\/15 {
+  background-color: #D1FAE5 !important;
+}
+
+  main [class*="bg-[#F8E769]"],
+main .bg-violet-600 {
+  background-color: #0F766E !important;
+}
+
+  main [class*="border-[#F8E769]"],
+  main [class*="border-[#064E3B]"],
+main .border-violet-500\/30,
+main .border-violet-500\/40,
+main .border-emerald-500\/20,
+main .border-emerald-500\/30,
+main .border-emerald-500\/40 {
+  border-color: #DCE5DF !important;
+}
+
+.portfolio-mockup {
+  color: #1F2933;
+  background: #FFFFFF !important;
+  border-color: #A7B5AD !important;
+}
+
+.portfolio-mockup .bg-slate-950,
+.portfolio-mockup .bg-slate-900,
+.portfolio-mockup .bg-slate-800,
+.portfolio-mockup .bg-black\/40 {
+  background-color: #E8EEEA !important;
+}
+
+.portfolio-mockup .text-white {
+  color: #1F2933 !important;
+}
+
+.portfolio-mockup .text-slate-100,
+.portfolio-mockup .text-slate-200,
+.portfolio-mockup .text-slate-300,
+.portfolio-mockup .text-slate-400,
+.portfolio-mockup .text-slate-500 {
+  color: #59665F !important;
+}
+
+.portfolio-mockup .text-emerald-300,
+.portfolio-mockup .text-emerald-400,
+.portfolio-mockup .text-violet-300,
+.portfolio-mockup .text-violet-400,
+.portfolio-mockup .text-amber-300,
+.portfolio-mockup .text-amber-400,
+.portfolio-mockup .text-rose-400 {
+  color: #0F766E !important;
+}
+
+.portfolio-mockup .bg-gradient-to-r,
+.portfolio-mockup .bg-gradient-to-b,
+.portfolio-mockup .bg-gradient-to-br,
+.portfolio-mockup .bg-gradient-to-tr {
+  background-image: none !important;
+  background-color: #D1FAE5 !important;
+}
+
+/* Custom cool gray scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E8EEEA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0F766E;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #115E59;
+}
+
+/* Custom selection */
+::selection {
+  background-color: #D1FAE5;
+  color: #1F2933;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid #0F766E;
+  outline-offset: 2px;
+}

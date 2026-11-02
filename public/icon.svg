@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="apGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8E769" />
+      <stop offset="100%" stop-color="#064E3B" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#030c08" />
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="url(#apGradient)" stroke-width="2" />
+  <text x="32" y="42" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="900" fill="#F8E769" text-anchor="middle" letter-spacing="-1">AP</text>
+</svg>
