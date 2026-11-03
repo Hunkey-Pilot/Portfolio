@@ -2,6 +2,13 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { User, Sparkles } from "lucide-react";
 import { ProfileAsset } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -18,6 +25,19 @@ export function ProfileImage({
   size = "lg",
 }: ProfileImageProps) {
   const [imageError, setImageError] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(pointerY, [-1, 1], [5, -5]), {
+    stiffness: 220,
+    damping: 24,
+    mass: 0.6,
+  });
+  const rotateY = useSpring(useTransform(pointerX, [-1, 1], [-5, 5]), {
+    stiffness: 220,
+    damping: 24,
+    mass: 0.6,
+  });
 
   const dimensionClasses = {
     sm: "w-24 h-24 text-2xl",
@@ -27,15 +47,37 @@ export function ProfileImage({
 
   const showRealImage = asset.hasImage && !imageError && asset.src;
 
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || event.pointerType === "touch") return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pointerX.set((event.clientX - bounds.left) / bounds.width * 2 - 1);
+    pointerY.set((event.clientY - bounds.top) / bounds.height * 2 - 1);
+  };
+
+  const resetPointer = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
   return (
-    <div className={cn("relative group inline-block", className)}>
+    <motion.div
+      className={cn("profile-image-card relative group inline-block", className)}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      animate={prefersReducedMotion ? undefined : { y: [0, -5, 0] }}
+      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      whileHover={prefersReducedMotion ? undefined : { scale: 1.04 }}
+      whileTap={{ scale: 0.98 }}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetPointer}
+    >
       {/* Outer ambient glow */}
       <div className="absolute -inset-2 bg-[#DBEAFE] rounded-full blur-xl opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       {/* Frame wrapper */}
       <div
         className={cn(
-          "relative rounded-full overflow-hidden p-1.5 bg-[#0F766E] shadow-md transition-transform duration-500 group-hover:scale-[1.02]",
+          "profile-image-frame relative rounded-full overflow-hidden p-1.5 bg-[#0F766E] shadow-md",
           dimensionClasses
         )}
       >
@@ -88,6 +130,6 @@ export function ProfileImage({
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

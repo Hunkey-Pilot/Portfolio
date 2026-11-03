@@ -1,12 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, FileDown, Smartphone, ChevronRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { ProfileAsset } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+interface NavbarProps {
+  profileAsset: ProfileAsset;
+}
+
+export function Navbar({ profileAsset }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -84,8 +90,21 @@ export function Navbar() {
           className="flex items-center gap-2.5 group focus:outline-hidden focus:ring-2 focus:ring-[#0F766E] rounded-xl p-1"
           aria-label="Anupam Pal - Home"
         >
-          <div className="w-9 h-9 rounded-xl bg-[#0F766E] flex items-center justify-center font-bold text-white text-sm tracking-wider shadow-sm group-hover:bg-[#115E59] group-hover:scale-105 transition-transform">
-            AP
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[#0F766E] bg-[#D1FAE5] shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_18px_rgba(15,118,110,0.28)]">
+            {profileAsset.hasImage ? (
+              <Image
+                src={profileAsset.src}
+                alt={profileAsset.alt}
+                fill
+                sizes="48px"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <span className="flex h-full w-full items-center justify-center font-bold text-[#0F766E] text-sm tracking-wider">
+                AP
+              </span>
+            )}
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-sm tracking-tight text-[#1F2933] group-hover:text-[#0F766E] transition-colors">

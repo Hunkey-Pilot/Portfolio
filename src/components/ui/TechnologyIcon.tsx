@@ -5,6 +5,7 @@ import {
   SiC,
   SiCplusplus,
   SiJavascript,
+  SiExpress,
   SiTypescript,
   SiGnubash,
   SiNodedotjs,
@@ -65,6 +66,9 @@ export function TechnologyIcon({
     case "nodejs":
     case "node.js":
       return <SiNodedotjs className={cn("text-[#5FA04E]", className)} style={style} aria-label={name || "Node.js"} />;
+    case "expressjs":
+    case "express.js":
+      return <SiExpress className={cn("text-[#1F2933]", className)} style={style} aria-label={name || "Express.js"} />;
     case "nestjs":
       return <SiNestjs className={cn("text-[#E0234E]", className)} style={style} aria-label={name || "NestJS"} />;
     case "flask":

@@ -13,7 +13,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { projectsData } from "@/data/projects";
-import { getProjectImages } from "@/lib/assets";
+import { getProfileImage, getProjectImages } from "@/lib/assets";
 import { TechnologyIcon } from "@/components/ui/TechnologyIcon";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { CraftyBayMockup } from "@/components/projects/mockups/CraftyBayMockup";
@@ -52,6 +52,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   // Automatic build-time / server-side image discovery
+  const profileAsset = getProfileImage();
   const projectImages = getProjectImages(project.slug);
 
   const renderMockup = () => {
@@ -69,7 +70,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
 
   return (
     <div className="min-h-screen bg-[#F1F4F2] text-[#1F2933] flex flex-col selection:bg-emerald-100 selection:text-[#1F2933]">
-      <Navbar />
+      <Navbar profileAsset={profileAsset} />
 
       <main className="flex-1 pt-32 pb-24">
         <div className="container max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
