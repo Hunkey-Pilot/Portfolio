@@ -22,7 +22,7 @@ export function ProfileImage({
   const dimensionClasses = {
     sm: "w-24 h-24 text-2xl",
     md: "w-36 h-36 text-3xl",
-    lg: "w-44 h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 text-4xl",
+    lg: "w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 text-5xl",
   }[size];
 
   const showRealImage = asset.hasImage && !imageError && asset.src;
@@ -45,7 +45,7 @@ export function ProfileImage({
               src={asset.src}
               alt={asset.alt}
               fill
-              sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, 224px"
+              sizes="(max-width: 640px) 208px, (max-width: 768px) 240px, 288px"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               onError={() => setImageError(true)}
               priority
